@@ -1,0 +1,21 @@
+If you want console to a VM, which have a program running.
+If you want show the result on other process,you can type:
+ - Run: sh start.sh
+ - Crtl + A and Ctrl + D to hidden it.
+ - Ctrl + C to Cancel
+ - To run: screen -r (need to install screen: sudo apt-get install screen)
+	
+
+--kill.sh
+#!/bin/bash
+
+ps fax|grep "opencv_check" | awk '{}{print $0; system("kill -9 " $1);}'
+--start.sh
+#!/bin/bash
+
+./kill.sh
+
+screen -S opencv_check -d -m -h 10000 /bin/bash -c "./opencv_check"
+
+screen -wipe
+
